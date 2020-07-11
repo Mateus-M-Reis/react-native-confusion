@@ -21,7 +21,7 @@ function RenderHistory(props) {
       return(
          <Card
             // featuredTitle={'About Information'}
-            title={'history'}
+            title={'History'}
             // featuredSubtitle={'item.designation'}
             // image={require('./images/uthappizza.png')}
             >

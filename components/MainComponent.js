@@ -21,7 +21,6 @@ const mapStateToProps = state => {
       leaders: state.leaders
    }
 }
-
 const mapDispatchToProps = dispatch => ({
    fetchDishes: () => dispatch(fetchDishes()),
    fetchComments: () => dispatch(fetchComments()),
