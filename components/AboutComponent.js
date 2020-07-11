@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { ScrollView, View, Text, FlatList } from 'react-native';
 import { Card } from 'react-native-elements';
 import { ListItem } from 'react-native-elements';
-import { HISTORY, CONTACT } from '../shared/assigment1';
+import { HISTORY } from '../shared/assigment1';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import { Loading } from './LoadingComponent'
 
 const mapStateToProps = state => {
    return {
@@ -63,23 +64,41 @@ class About extends Component {
    };
 
    render() {
-      return(
-         <ScrollView>
-            <RenderHistory
-               item={HISTORY}
-            />
-            <Card
-               title={'Corporate Leadership'}
-            >
 
-               <FlatList
-                  data={this.props.leaders.leaders}
-                  renderItem={RenderLeader}
-                  keyExtractor={item => item.id.toString()}
-               />
-            </Card>
-        </ScrollView>
-      );
+      if (this.props.leaders.isLoading) {
+         return(
+             <ScrollView>
+               <RenderHistory item={HISTORY}/>
+               <Card title={'Corporate Leadership'} >
+                  <Loading />
+               </Card>
+           </ScrollView>
+         );
+      }
+      else if (this.props.leaders.errmess) {
+         return(
+             <ScrollView>
+               <RenderHistory item={HISTORY}/>
+               <Card title={'Corporate Leadership'} >
+                  <Text>{this.props.leaders.errmess}</Text>
+               </Card>
+           </ScrollView>
+         );
+      }
+      else {
+         return(
+            <ScrollView>
+               <RenderHistory item={HISTORY} />
+               <Card title={'Corporate Leadership'} >
+                  <FlatList
+                     data={this.props.leaders.leaders}
+                     renderItem={RenderLeader}
+                     keyExtractor={item => item.id.toString()}
+                  />
+               </Card>
+           </ScrollView>
+         );
+      }
    }
 }
 
