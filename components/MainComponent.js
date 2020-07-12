@@ -4,6 +4,7 @@ import Menu from './MenuComponent';
 import Dishdetail from './DishDetailComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
+import Reservation from './ReservationComponent'
 import { View, Platform, Image, StyleSheet, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack'; 
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'; 
@@ -114,6 +115,21 @@ const AboutNavigator = createStackNavigator({
    }
 })
 
+const ReservationNavigator = createStackNavigator({
+   Reservation: { 
+      screen: Reservation,
+      navigationOptions: ({ navigation }) => ({
+         headerStyle: {
+            backgroundColor: '#512DA8'
+         },
+         headerTintColor: '#fff',
+         headerTitleStyle: {
+            color: '#fff'
+         }
+      })
+   }}
+)
+
  const CustomDrawerContentComponent = (props) => (
     <ScrollView>
        <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
@@ -171,6 +187,21 @@ const MainNavigator = createAppContainer(createDrawerNavigator({
                name='contact-mail'
                type='font-aweasome5'
                size={22}
+               color={tintColor}
+            />
+         )
+      }
+   },
+   Reservation: {
+      screen: ReservationNavigator,
+      navigationOptions: {
+         title: 'Reserve Table',
+         drawerLabel: 'Reserve Table',
+         drawerIcon: ({ tintColor }) => (
+            <Icon 
+               name='restaurant'
+               type='font-aweasome5'
+               size={24}
                color={tintColor}
             />
          )

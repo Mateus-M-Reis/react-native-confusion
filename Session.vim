@@ -10,15 +10,16 @@ set shortmess=aoO
 badd +2 App.js
 badd +5993 yarn-error.log
 badd +0 yarn.lock
-badd +1 components/MainComponent.js
+badd +2 components/MainComponent.js
 badd +3 components/HomeComponent.js
 badd +9 components/MenuComponent.js
 badd +4 redux/ActionTypes.js
-badd +146 redux/ActionCreators.js
-badd +8 redux/configureStore.js
+badd +152 redux/ActionCreators.js
+badd +22 redux/configureStore.js
 badd +1 shared/baseUrl.js
-badd +11 redux/favorites.js
-badd +107 components/DishDetailComponent.js
+badd +1 redux/favorites.js
+badd +86 components/DishDetailComponent.js
+badd +0 redux/comments.js
 argglobal
 %argdel
 $argadd App.js
@@ -62,11 +63,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 2 - ((1 * winheight(0) + 27) / 55)
+let s:l = 14 - ((13 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-2
+14
 normal! 0
 wincmd w
 argglobal
@@ -95,10 +96,7 @@ wincmd _ | wincmd |
 vsplit
 wincmd _ | wincmd |
 vsplit
-wincmd _ | wincmd |
-vsplit
-3wincmd h
-wincmd w
+2wincmd h
 wincmd w
 wincmd w
 set nosplitbelow
@@ -108,22 +106,9 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 31 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 43 + 113) / 227)
+exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
+exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
-argglobal
-enew
-file NERD_tree_2
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-wincmd w
 argglobal
 setlocal fdm=indent
 setlocal fde=0
@@ -132,12 +117,80 @@ setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+setlocal fen
+32
+normal! zo
+33
+normal! zo
+35
+normal! zo
+35
+normal! zc
+33
+normal! zc
+51
+normal! zo
+53
+normal! zo
+53
+normal! zc
+51
+normal! zc
+134
+normal! zo
+150
+normal! zo
+152
+normal! zo
+155
+normal! zo
+155
+normal! zc
+152
+normal! zc
+165
+normal! zo
+167
+normal! zo
+170
+normal! zo
+171
+normal! zo
+180
+normal! zo
+182
+normal! zo
+185
+normal! zo
+186
+normal! zo
+185
+normal! zc
+182
+normal! zc
+180
+normal! zc
+202
+normal! zo
+203
+normal! zo
+210
+normal! zo
+211
+normal! zo
+212
+normal! zo
+211
+normal! zc
+210
+normal! zc
+202
+normal! zc
+let s:l = 30 - ((29 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+30
 normal! 0
 wincmd w
 argglobal
@@ -149,12 +202,32 @@ setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal nofen
-let s:l = 9 - ((8 * winheight(0) + 27) / 55)
+setlocal fen
+9
+normal! zo
+16
+normal! zo
+22
+normal! zo
+23
+normal! zo
+24
+normal! zo
+25
+normal! zo
+50
+normal! zo
+51
+normal! zo
+51
+normal! zo
+52
+normal! zo
+let s:l = 55 - ((53 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-9
+55
 normal! 0
 wincmd w
 argglobal
@@ -174,16 +247,11 @@ normal! zt
 3
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 31 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 43 + 113) / 227)
+exe 'vert 1resize ' . ((&columns * 75 + 113) / 227)
+exe 'vert 2resize ' . ((&columns * 75 + 113) / 227)
 exe 'vert 3resize ' . ((&columns * 75 + 113) / 227)
-exe 'vert 4resize ' . ((&columns * 75 + 113) / 227)
 tabedit components/DishDetailComponent.js
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
@@ -191,20 +259,6 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 31 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 195 + 113) / 227)
-argglobal
-enew
-file NERD_tree_5
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-wincmd w
 argglobal
 setlocal fdm=indent
 setlocal fde=0
@@ -213,16 +267,55 @@ setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal nofen
-let s:l = 107 - ((53 * winheight(0) + 27) / 55)
+setlocal fen
+10
+normal! zo
+11
+normal! zo
+18
+normal! zo
+23
+normal! zo
+26
+normal! zo
+27
+normal! zo
+28
+normal! zo
+35
+normal! zo
+51
+normal! zo
+54
+normal! zo
+55
+normal! zo
+56
+normal! zo
+64
+normal! zo
+65
+normal! zo
+66
+normal! zo
+76
+normal! zo
+77
+normal! zo
+85
+normal! zo
+88
+normal! zo
+89
+normal! zo
+90
+normal! zo
+let s:l = 96 - ((49 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-107
-normal! 058|
-wincmd w
-exe 'vert 1resize ' . ((&columns * 31 + 113) / 227)
-exe 'vert 2resize ' . ((&columns * 195 + 113) / 227)
+96
+normal! 0
 tabedit shared/baseUrl.js
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -304,12 +397,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 154 - ((28 * winheight(0) + 27) / 55)
+let s:l = 149 - ((23 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-154
-normal! 03|
+149
+normal! 012|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 31 + 113) / 227)
 exe '2resize ' . ((&lines * 27 + 29) / 58)
@@ -317,13 +410,17 @@ exe 'vert 2resize ' . ((&columns * 81 + 113) / 227)
 exe '3resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 3resize ' . ((&columns * 81 + 113) / 227)
 exe 'vert 4resize ' . ((&columns * 113 + 113) / 227)
-tabedit redux/favorites.js
+tabedit redux/comments.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 wincmd _ | wincmd |
 vsplit
 2wincmd h
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
 wincmd w
 wincmd w
 set nosplitbelow
@@ -334,8 +431,11 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 31 + 113) / 227)
+exe '2resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 2resize ' . ((&columns * 81 + 113) / 227)
-exe 'vert 3resize ' . ((&columns * 113 + 113) / 227)
+exe '3resize ' . ((&lines * 27 + 29) / 58)
+exe 'vert 3resize ' . ((&columns * 81 + 113) / 227)
+exe 'vert 4resize ' . ((&columns * 113 + 113) / 227)
 argglobal
 enew
 file NERD_tree_4
@@ -357,11 +457,28 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 13 - ((12 * winheight(0) + 27) / 55)
+let s:l = 1 - ((0 * winheight(0) + 13) / 27)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-13
+1
+normal! 0
+wincmd w
+argglobal
+if bufexists("redux/favorites.js") | buffer redux/favorites.js | else | edit redux/favorites.js | endif
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 5 - ((4 * winheight(0) + 13) / 27)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+5
 normal! 0
 wincmd w
 argglobal
@@ -374,18 +491,20 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+let s:l = 22 - ((21 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 019|
+22
+normal! 0
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 31 + 113) / 227)
+exe '2resize ' . ((&lines * 27 + 29) / 58)
 exe 'vert 2resize ' . ((&columns * 81 + 113) / 227)
-exe 'vert 3resize ' . ((&columns * 113 + 113) / 227)
-tabnext 5
+exe '3resize ' . ((&lines * 27 + 29) / 58)
+exe 'vert 3resize ' . ((&columns * 81 + 113) / 227)
+exe 'vert 4resize ' . ((&columns * 113 + 113) / 227)
+tabnext 3
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
