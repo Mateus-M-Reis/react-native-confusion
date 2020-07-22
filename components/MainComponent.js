@@ -5,6 +5,7 @@ import Dishdetail from './DishDetailComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
 import Reservation from './ReservationComponent'
+import Favorites from './FavoriteComponent'
 import { View, Platform, Image, StyleSheet, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack'; 
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'; 
@@ -130,6 +131,21 @@ const ReservationNavigator = createStackNavigator({
    }}
 )
 
+const FavoritesNavigator = createStackNavigator({
+   Favorites: { 
+      screen: Favorites,
+      navigationOptions: ({ navigation }) => ({
+         headerStyle: {
+            backgroundColor: '#512DA8'
+         },
+         headerTintColor: '#fff',
+         headerTitleStyle: {
+            color: '#fff'
+         }
+      })
+   }}
+)
+
  const CustomDrawerContentComponent = (props) => (
     <ScrollView>
        <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
@@ -187,6 +203,21 @@ const MainNavigator = createAppContainer(createDrawerNavigator({
                name='contact-mail'
                type='font-aweasome5'
                size={22}
+               color={tintColor}
+            />
+         )
+      }
+   },
+   Favorites: {
+      screen: FavoritesNavigator,
+      navigationOptions: {
+         title: 'My Favorites',
+         drawerLabel: 'My Favorites',
+         drawerIcon: ({ tintColor }) => (
+            <Icon 
+               name='heart'
+               type='font-awesome'
+               size={24}
                color={tintColor}
             />
          )

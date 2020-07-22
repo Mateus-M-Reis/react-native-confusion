@@ -1,6 +1,8 @@
-import React, { Component } from 'react'; import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Modal } from  'react-native';
+import React, { Component } from 'react'; 
+import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Modal } from  'react-native';
 import { Card } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker';
+//import DatePicker from '@react-native-community/datetimepicker';
 
 class Reservation extends Component {
    constructor(props) {
@@ -68,9 +70,9 @@ class Reservation extends Component {
                   date={this.state.date}
                   format=''
                   mode='datetime'
-                  placeholder='select date and Time'
-                  minDate='2017-01-01'
-                  maxDate='2050-01-01'
+                  placeholder='select date and time'
+                  minDate='2019-01-01'
+                  maxDate='2021-01-01'
                   confirmBtnText='Confirm'
                   cancelBtnText='Cancel'
                   customStyles={{
@@ -142,7 +144,7 @@ const styles = {
       fontSize: 24,
       fontWeight: 'bold',
       backgroundColor: '#512DA8',
-      testAlign: 'center',
+      textAlign: 'center',
       color: 'white',
       marginBottom: 20
    },
