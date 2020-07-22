@@ -10,6 +10,7 @@ function RenderContact(props) {
 
    if (item != null) {
       return(
+             <Animatable.View animation='fadeInDown' duration={2000} delay={1000}>
          <Card
             // featuredTitle={'Contact Information'}
             title={'Contact Information'}
@@ -20,6 +21,7 @@ function RenderContact(props) {
                {item.text}
             </Text>
          </Card>
+            </Animatable.View>
       );
    }
    else {
@@ -43,11 +45,9 @@ class Contact extends Component {
    render() {
       return(
          <ScrollView>
-             <Animatable.View animation='fadeInDown' duration={2000} delay={1000}>
-               <RenderContact
-                  item={CONTACT}
-               />
-            </Animatable.View>
+            <RenderContact
+               item={CONTACT}
+            />
          </ScrollView>
       );
    }

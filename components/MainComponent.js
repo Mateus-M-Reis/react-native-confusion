@@ -5,7 +5,7 @@ import Dishdetail from './DishDetailComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
 import Reservation from './ReservationComponent'
-import Favorites from './FavoriteComponent'
+import Favorites from './FavoritesComponent'
 import { View, Platform, Image, StyleSheet, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack'; 
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'; 
