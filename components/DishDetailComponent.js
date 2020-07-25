@@ -32,6 +32,13 @@ function RenderDish(props) {
          return false
    }
 
+   const recognizeComment = ({ moveX, moveY, dx, dy }) => {
+      if (dx < 200)
+         return true
+      else
+         return false
+   }
+
    const panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (e, gestureState) => {
          return true
@@ -58,6 +65,9 @@ function RenderDish(props) {
                ],
                { cancelable: false }
             )
+         else if (recognizeComment(gestureState))
+            props.onPressComment()
+            console.log('gesture detected!')
          return true
       }
 
@@ -116,8 +126,8 @@ function RenderComments(props) {
                renderItem={renderCommentItem}
                keyExtractor={item => item.id.toString()}
             />
-                  </Card>
-                     </View>
+         </Card>
+      </View>
    )
 }
 
