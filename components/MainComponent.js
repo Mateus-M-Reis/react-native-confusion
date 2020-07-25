@@ -6,6 +6,7 @@ import Contact from './ContactComponent';
 import About from './AboutComponent';
 import Reservation from './ReservationComponent'
 import Favorites from './FavoritesComponent'
+import Login from './LoginComponent'
 import { View, Platform, Image, StyleSheet, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack'; 
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'; 
@@ -146,6 +147,20 @@ const FavoritesNavigator = createStackNavigator({
    }}
 )
 
+const LoginNavigator = createStackNavigator({
+   Login: { 
+      screen: Login,
+      navigationOptions: ({ navigation }) => ({
+         headerStyle: {
+            backgroundColor: '#512DA8'
+         },
+         headerTintColor: '#fff',
+         headerTitleStyle: {
+            color: '#fff'
+         }
+      })
+   }}
+)
  const CustomDrawerContentComponent = (props) => (
     <ScrollView>
        <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
@@ -163,6 +178,21 @@ const FavoritesNavigator = createStackNavigator({
  );
 
 const MainNavigator = createAppContainer(createDrawerNavigator({
+   Login: {
+      screen: LoginNavigator,
+      navigationOptions: {
+         title: 'Login',
+         drawerLabel: 'Login',
+         drawerIcon: ({ tintColor }) => (
+            <Icon 
+               name='sign-in'
+               type='font-awesome'
+               size={24}
+               color={tintColor}
+            />
+         )
+      }
+   },
    Home: {
       screen: HomeNavigator,
       navigationOptions: {
@@ -254,6 +284,7 @@ const MainNavigator = createAppContainer(createDrawerNavigator({
       }
    }
 }, { 
+   initialRouteName: 'Home',
    drawerBackgroundColor: '#D1C4E9',
    contentComponent: CustomDrawerContentComponent
 })
