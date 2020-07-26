@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { Card, Button, Icon } from 'react-native-elements';
 import { CONTACT } from '../shared/assigment1';
 import * as Animatable from 'react-native-animatable'
