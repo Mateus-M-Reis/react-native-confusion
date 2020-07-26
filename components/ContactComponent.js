@@ -1,41 +1,18 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Card, Button, Icon } from 'react-native-elements';
 import { CONTACT } from '../shared/assigment1';
 import * as Animatable from 'react-native-animatable'
-
-function RenderContact(props) {
-   
-   const item = props.item;
-
-   if (item != null) {
-      return(
-             <Animatable.View animation='fadeInDown' duration={2000} delay={1000}>
-         <Card
-            // featuredTitle={'Contact Information'}
-            title={'Contact Information'}
-            // featuredSubtitle={'item.designation'}
-            // image={require('./images/uthappizza.png')}
-            >
-            <Text style={{margin: 10}}>
-               {item.text}
-            </Text>
-         </Card>
-            </Animatable.View>
-      );
-   }
-   else {
-      return(<View></View>);
-   }
-}
+import * as MailComposer from 'expo-mail-composer'
 
 class Contact extends Component {
 
-   constructor(props) {
-      super(props);
-      //  this.state = {
-
-      //  }
+   sendMail() {
+      MailComposer.composeAsync({
+         recipients: ['confusion@food.net'],
+         subject: 'Enquiry',
+         body: 'To whom it may concern: '
+      })
    }
 
    static navigationOptions = {
@@ -43,12 +20,27 @@ class Contact extends Component {
    };
 
    render() {
+
       return(
-         <ScrollView>
-            <RenderContact
-               item={CONTACT}
-            />
-         </ScrollView>
+         <Animatable.View animation='fadeInDown' duration={2000} delay={1000}>
+            <Card
+               title={'Contact Information'}
+            >
+               <Text style={{margin: 10}}>{CONTACT.text}</Text>
+               <Button
+                  title='Send Email'
+                  buttonStyle={{ backgroundColor: '#512DA8' }}
+                  icon={
+                     <Icon 
+                        name='envelope-o'
+                        type='font-awesome'
+                        style={{ size: '10px' }}
+                     />
+                  }
+                  onPress={this.sendMail}
+               />
+            </Card>
+         </Animatable.View>
       );
    }
 }
