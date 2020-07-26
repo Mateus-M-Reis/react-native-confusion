@@ -148,34 +148,38 @@ const FavoritesNavigator = createStackNavigator({
 )
 
 const LoginNavigator = createStackNavigator({
-   Login: { 
-      screen: Login,
-      navigationOptions: ({ navigation }) => ({
-         headerStyle: {
-            backgroundColor: '#512DA8'
-         },
-         headerTintColor: '#fff',
-         headerTitleStyle: {
-            color: '#fff'
-         }
-      })
-   }}
-)
- const CustomDrawerContentComponent = (props) => (
-    <ScrollView>
-       <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-          <View style={styles.drawerHeader}>
-             <View style={{flex:1}}>
-                <Image source={require('./images/logo.png')} style={styles.drawerImage} />
-             </View>
-             <View style={{flex: 2}}>
-                <Text style={styles.drawerHeaderText}>Ristorante Con Fusion</Text>
-             </View>
-          </View>
-          <DrawerItems {...props} />
-       </SafeAreaView>
-    </ScrollView>
- );
+   Login: Login
+}, {
+   navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+         backgroundColor: "#512DA8"
+      },
+      headerTitleStyle: {
+         color: "#fff"            
+      },
+      title: 'Login',
+      headerTintColor: "#fff",
+      headerLeft: <Icon name="menu" size={24}
+         iconStyle={{ color: 'white' }} 
+         onPress={ () => navigation.toggleDrawer() } />    
+   })
+});
+
+const CustomDrawerContentComponent = (props) => (
+   <ScrollView>
+      <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
+         <View style={styles.drawerHeader}>
+            <View style={{flex:1}}>
+               <Image source={require('./images/logo.png')} style={styles.drawerImage} />
+                  </View>
+                     <View style={{flex: 2}}>
+                        <Text style={styles.drawerHeaderText}>Ristorante Con Fusion</Text>
+                           </View>
+                              </View>
+                                 <DrawerItems {...props} />
+                                    </SafeAreaView>
+                                       </ScrollView>
+);
 
 const MainNavigator = createAppContainer(createDrawerNavigator({
    Login: {
@@ -304,9 +308,9 @@ class Main extends Component {
          <View style={{ 
             flex: 1, 
             paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight
-            }}>
+         }}>
             <MainNavigator />
-         </View>
+               </View>
       );
    }
 }
