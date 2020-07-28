@@ -7,7 +7,8 @@ import About from './AboutComponent';
 import Reservation from './ReservationComponent'
 import Favorites from './FavoritesComponent'
 import Login from './LoginComponent'
-import { View, Platform, Image, StyleSheet, Text } from 'react-native';
+import { View, Platform, Image, StyleSheet, Text, ToastAndroid } from 'react-native';
+import NetInfo from "@react-native-community/netinfo";
 import { createStackNavigator } from 'react-navigation-stack'; 
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'; 
 import { createAppContainer, ScrollView, SafeAreaView  } from 'react-navigation'; 
@@ -301,6 +302,50 @@ class Main extends Component {
       this.props.fetchComments();
       this.props.fetchPromos();
       this.props.fetchLeaders();
+
+      NetInfo.fetch()
+         .then((connectionInfo) => {
+            ToastAndroid.show(
+               'Initial Network Connectivity Type: '
+               + connectionInfo.type 
+               + ', effectiveType: '
+               + connectionInfo.effectiveType,
+               ToastAndroid.LONG
+            )
+         })
+
+      NetInfo.addEventListener(
+         'connectionChange', 
+         this.handleConnectivityChange
+      )
+   }
+
+   componentWillUnmount() {
+      NetInfo.removeEventListener(
+         'connection Change', 
+         this.handleConnectivityChange
+      )
+   }
+
+   handleConnectivityChange = (connectionInfo) => {
+      switch (connectionInfo.type) {
+         case 'none':
+            ToastAndroid.show('You are now offline!', ToadAndroid.LONG)
+            break
+         case 'wifi':
+            ToastAndroid.show('You are connected to WiFi!', ToadAndroid.LONG)
+            break
+
+         case 'cellular':
+            ToastAndroid.show('You are connected to Cellular!', ToadAndroid.LONG)
+            break
+
+         case 'unknown':
+            ToastAndroid.show('You now have an unknown connection!', ToadAndroid.LONG)
+            break
+         default:
+            break
+      }
    }
 
    render() {
