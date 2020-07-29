@@ -5,6 +5,7 @@ import DatePicker from 'react-native-datepicker';
 import * as Animatable from 'react-native-animatable'
 import * as Permissions from 'expo-permissions'
 import * as Notifications from 'expo-notifications'
+import * as Calendar from 'expo-calendar';
 
 class Reservation extends Component {
 
@@ -28,6 +29,7 @@ class Reservation extends Component {
    handleReservation() { 
       console.log(JSON.stringify(this.state));
       this.toggleModal()
+      this.addReservationToCalendar(this.state.date)
    }
 
    resetForm() {
@@ -49,6 +51,13 @@ class Reservation extends Component {
       return permission
    }
 
+   async obtainCalendarPermission() {
+      const { status } = await Calendar.requestCalendarPermissionsAsync();
+      if (status === 'granted') {
+         const calendars = await Calendar.getCalendarsAsync();
+      }
+   }
+
    async presentLocalNotification(date) {
       await this.obtainNotificationPermission()
       Notifications.presentNotificationAsync({
@@ -64,7 +73,19 @@ class Reservation extends Component {
          }
       })
    }
-/////////////////////////////////////////////////////////////// 
+
+   async addReservationToCalendar(date) {
+      this.obtainCalendarPermission()
+      const newCalendarID = await Calendar.createEventAsync({
+         title: 'Con Fusion Table Reservation',
+         startDate: new Date(Date.Parse(date)),
+         endDate: new Date(Date.Parse(date) + 2*3600*1000),
+         timeZone: 'Asia/Hong_Kong',
+         location: '121, Clear Water Bay Road, Clear Water Bay, Kowloon, Hong Kong'
+        });
+        console.log(`Your new calendar ID is: ${newCalendarID}`);
+   }
+
    confirmationAlert() {
       Alert.alert(
          'Your Reservation OK?',
@@ -82,6 +103,7 @@ class Reservation extends Component {
                onPress: () => {
                   this.presentLocalNotification(this.state.date)
                   this.resetForm() 
+                  this.addReservationToCalendar(this.state.date)
                }
             }
          ],
@@ -97,7 +119,6 @@ class Reservation extends Component {
       },
    })
 
-/////////////////////////////////////////////////////////////// 
    render() {
       return(
          <Animatable.View animation='zoomIn' duration={2000} 
@@ -161,27 +182,8 @@ class Reservation extends Component {
                      color='#512DA8'
                      onPress={() => this.confirmationAlert()}
                      accessibilityLabel='Learn more about this purple button'
-                     />
+                  />
                </View>
-                  <Modal
-                     animationType={'slide'}
-                     transparent={false}
-                     visible={this.state.showModal}
-                     onDismiss={() => {this.toggleModal(); this.resetForm()}}
-                     onRequestClose={() => {this.toggleModal(); this.resetForm()}}
-                     >
-                        <View style={styles.modal}>
-                           <Text style={styles.modalTitle}>Your Reservation</Text>
-                           <Text style={styles.modalText}>Number of Guests: {this.state.guests}</Text>
-                           <Text style={styles.modalText}>Smoking? : {this.state.smoking ? 'Yes' : 'No'}</Text>
-                           <Text style={styles.modalText}>Date and Time: {this.state.date}</Text>
-                              <Button 
-                                 onPress={() => {this.toggleModal(); this.resetForm()}}
-                                 color="#512DA8"
-                                 title='Close'
-                              />
-                        </View>
-                  </Modal>
             </ScrollView>
          </Animatable.View>
       )
